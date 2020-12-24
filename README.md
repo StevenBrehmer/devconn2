@@ -14,9 +14,9 @@ https://www.udemy.com/mern-stack-front-to-back/learn/v4/content
 
 add file /config/default.json
 
-insert:
-{   
-    "mongouri": "mongoconnectionstring"
-}
+### insert:
+### {   
+###    "mongouri": "mongoconnectionstring"
+### }
 
 
