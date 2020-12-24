@@ -9,10 +9,6 @@ https://www.udemy.com/mern-stack-front-to-back/learn/v4/content
 
 ## Installing & Running
 
-### npm install --prefix client
-installs all dependencies.
-
-
 
 ## Files to Configure
 
@@ -23,18 +19,4 @@ insert:
     "mongouri": "mongoconnectionstring"
 }
 
-
-add file /config/db.js
-
-
-
-
-
-will need to create
-/config/keys.js
-
-module.exports = {
-mongoURI: "mongodb://user:pass@link:port/dbname",
-secretOrKey: "secretKeyForHashing" // just a string of whatever
-};
 
