@@ -20,8 +20,8 @@ router.get("/me",auth, async (req , res) => {
         }
 
         res.json(profile);
-    } catch (error) {
-        console.error(error.message);
+    } catch (err) {
+        console.error(err.message);
         res.status(500).send('Server Error');
     }
 });
@@ -95,8 +95,8 @@ router.post('/', [ auth, [
 
         res.json(profile);
 
-    } catch (error) {
-        console.error(error.message);
+    } catch (err) {
+        console.error(err.message);
         res.status(500).send('Server Error');
     }
 });
@@ -150,7 +150,60 @@ router.delete('/', auth ,  async (req,res) => {
         console.error(err.message);
         res.status(500).send('Server Error');
     }
-})
+});
+
+// @route   PUT api/profile/experience
+// @desc    Add profile Experience
+// @access  Private
+router.put('/experience', [auth, [
+    check('title', 'Title is required').not().isEmpty(),
+    check('company', 'Company is required').not().isEmpty(),
+    check('from', 'From Date is required').not().isEmpty(),
+] ], async (req,res)=>{
+    const errors = validationResult(req);
+    if(!errors.isEmpty()) {
+        return res.status(400).json({errors: errors.array()});
+    }
+
+    //destructure 
+    const {
+        title,
+        company,
+        location,
+        from,
+        to,
+        current,
+        description
+    } = req.body;
+
+
+
+    const newExp = {
+        title,
+        company,
+        location,
+        from,
+        to,
+        current,
+        description
+    };
+
+    try {
+        const profile = await Profile.findOne({user: req.user.id});
+        //unshift pushes to array at the begining instead of the end
+        profile.experience.unshift(newExp);
+
+        await profile.save();
+        res.json(profile);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server Error");
+        
+    }
+
+
+
+});
 
 
 

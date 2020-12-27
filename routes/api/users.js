@@ -79,8 +79,8 @@ router.post("/",[
                 res.json({token});
             }
             );
-    }catch(error){
-        console.error(error.message);
+    }catch(err){
+        console.error(err.message);
         //500 - internal server error
         res.status(500).send('Server Error');
     }
