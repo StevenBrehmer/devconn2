@@ -17,7 +17,9 @@ add file /config/default.json
 insert:
 {   
     "mongouri": "mongoconnectionstring",
-    "jwtSecret": "mySecretToken"
+    "jwtSecret": "mySecretToken",
+    "githubClientId": "PullFrom- Github.com/settings/developers",
+    "githubSecret": "thenGenerateThisKeyOnceOauthRegistered"
 }
 
 
