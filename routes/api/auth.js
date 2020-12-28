@@ -16,7 +16,7 @@ router.get("/", auth, async (req , res) => {
         // can reference req.user anywhere in a protected route.
         const user = await User.findById(req.user.id).select('-password');
         res.json(user);
-    } catch (error) {
+    } catch (err) {
         console.error(err.message);
         res.status(500).send("Internal Server Error");
     }
@@ -74,8 +74,8 @@ router.post("/",[
                 res.json({token});
             }
             );
-    }catch(error){
-        console.error(error.message);
+    }catch(err){
+        console.error(err.message);
         //500 - internal server error
         res.status(500).send('Server Error');
     }
