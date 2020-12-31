@@ -32,7 +32,7 @@ router.post("/",[
 
         if(user)
         {
-           return res.status(400).json({errors:[{mgs: 'user already registed in db'}]});
+           return res.status(400).json({errors:[{msg: 'user already registed in db'}]});
         }
 
         // Get users Gravatar
