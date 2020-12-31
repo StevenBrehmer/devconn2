@@ -2,11 +2,12 @@ import React, { Fragment, useState } from 'react';
 import {connect} from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
+import { register } from '../../actions/auth';
 //impt
 import PropTypes from 'prop-types';
 
 
-const Register = ({setAlert}) => {
+const Register = ({setAlert, register}) => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -25,7 +26,7 @@ const Register = ({setAlert}) => {
            setAlert('Passwords do not match', 'danger');
         }
         else{                       
-            console.log(formData);
+            register({name,email,password});
         }
     }
 
@@ -35,7 +36,7 @@ const Register = ({setAlert}) => {
       <p className="lead"><i className="fas fa-user"></i> Create Your Account</p>
       <form className="form" onSubmit={e => onSubmit(e)}>
         <div className="form-group">
-          <input type="text" placeholder="Name" name="name" value={name} onChange={e=> onChange(e) } required />
+          <input type="text" placeholder="Name" name="name" value={name} onChange={e=> onChange(e) }  />
         </div>
         <div className="form-group">
           <input type="email" placeholder="Email Address" name="email" value={email} onChange={e=> onChange(e) } />
@@ -72,7 +73,8 @@ const Register = ({setAlert}) => {
 };
 
 Register.propTypes = {
-  setAlert: PropTypes.func.isRequired
+  setAlert: PropTypes.func.isRequired, // @shorthand ptfr
+  register: PropTypes.func.isRequired, // @shorthand ptfr
 }
 
-export default connect(null,{ setAlert })(Register);
+export default connect(null,{ setAlert, register })(Register);
